@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
+import { TouchableOpacity } from "react-native"
 
 export default function TabLayout() {
   return (
@@ -19,8 +20,17 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="gameDetails"
-        options={{
+        options={({ navigation }) => ({
           title: "Details",
+          headerLeft: () => (
+            <TouchableOpacity
+              style={{ marginLeft: 12 }}
+              onPress={() => navigation.navigate("index")}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="chevron-back" size={24} color="#1f2937" />
+            </TouchableOpacity>
+          ),
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={
@@ -32,7 +42,7 @@ export default function TabLayout() {
               size={24}
             />
           ),
-        }}
+        })}
       />
       <Tabs.Screen
         name="contact"
